@@ -55,8 +55,72 @@ Route::get('/article/{id}', 'ArticleController@show')->name('article.show');
 Route::get('/article/{id}/edit', 'ArticleController@edit')->name('article.edit');
 Route::put('/article/{id}', 'ArticleController@update')->name('article.update');
 Route::delete('/article/{id}', 'ArticleController@destroy')->name('article.destroy');
-
+- RESTFul urls (ie article/index is bad)
 // or shorter syntax with just
 Route::resource('/article', 'ArticleController');
 ```
 Controller method and view names should follow the same pattern as above.
+6. Do not version large files (ie binaries, apk or any big image > 10MB).
+Git is not meant for that. If needed to store large files
+See how it is affecting the repository size which makes the initial pull/push to take too long
+![image](https://user-images.githubusercontent.com/17571380/116427361-7bdfe000-a833-11eb-9fe6-c714c410a5d4.png)
+
+![image](https://user-images.githubusercontent.com/17571380/116427894-f3157400-a833-11eb-84d4-ff13ec7fd1e4.png)
+7. Head over to laravel documentation about package development
+https://laravel.com/docs/8.x/packages
+Use of laravel package instead of laravel app.
+A good sign that you need a package instead of a full app is the reuse of your `.env` file.
+Here's spatie package skeleton to start developing a new package
+```
+git clone https://github.com/spatie/package-skeleton-laravel package
+cd package
+./configure-skeleton.sh
+``` 
+8. Database migration: column change
+Install 
+```bash
+composer require doctrine/dbal
+```
+9. Avoid prefixing resource (model, controller).
+```
+ConsultantAppointmentGuest
+ConsultantAppointment
+ConsultantAppointmentSlot
+ConsultantCertification
+```
+Use namespace for context.
+```
+Consultant/Appointment/Guest
+Consultant/Appointment
+Consultant/Appointment/Slot
+Consultant/Certification
+```
+10. Do not use `assets` helper to generate url
+```php
+<form class="form-horizontal" action="<?= asset('signinadata')?>" id="formdata" method="POST" >
+</form>
+``` 
+use `url` helper or `route` with a better name
+```php
+<form class="form-horizontal" action="<?= route('user.login.post') ?>" id="formdata" method="POST" >
+</form>
+
+```
+
+11. Use `config` to map `env` variable
+```php
+// from 
+env('STRIPE_SECRET')
+
+// to
+config('services.stripe.secret')
+```
+12. Don't use fields such like `lastModifiedDate` or `DateCreated`. Laravel has `created_at` and `updated_at` out of the box. Set model property `timestamps = false` when not using them
+13. REST API
+    1. Don’t return plain text
+    2. Use plural rather than singular
+    3. Avoid using verbs in URIs
+    4. Always return a meaningful status code
+    5. Use trailing slashes consistently
+- Config and environment variable replace static information or credentials. Credentials should never be part of the code.
+- Table and column names should use snake case (ie `envision_post_categories`). Table name should be in plural unlike the column name in singular.

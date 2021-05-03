@@ -69,10 +69,22 @@ Example
 # Use Actions where possible
 Most of the time an Action is the best course of action 😛 
 
-https://github.com/FreshinUp/fresh-bus-forms/blob/master/src/Actions/Action.php and https://medium.com/@remi_collin/keeping-your-laravel-applications-dry-with-single-action-classes-6a950ec54d1d
+```php
+<?php
+namespace FreshinUp\FreshBusForms\Actions;
 
-Examples
-https://github.com/FreshinUp/fresh-bus-forms/blob/master/src/Actions/Action.php
+/**
+ * Interface Action
+ * Instead of the bloated Service perspective that gets messy, we're embracing an "Action" paradigm that are seen
+ *
+ */
+interface Action
+{
+    public function execute(array $data);
+}
+
+```
+https://medium.com/@remi_collin/keeping-your-laravel-applications-dry-with-single-action-classes-6a950ec54d1d
 
 Example of usage in a controller method:
 ```
@@ -94,28 +106,6 @@ Example of usage in a controller method:
 Example:
 `api/coaching/programs`
 
-# Permission Related Endpoints
-We created helpers to be used on permission-related store modules
-(https://github.com/FreshinUp/core-ui/blob/master/src/store/utils/permissionsHelpers.js). `enabledFields`, `readonlyFields`, `validationRules` and `labels` should be used as getters on the module.
-
-They rely on a structure that must be used by the API, therefore all permission-related pull requests must follow the structure:
-
-```
-'properties' => [
-  'status' => [
-    'label' => 'Status',
-    'rules' => ['required'],
-    'readonly' => false
-  ],
-  'first_name' => [
-    'label' => 'First Name',
-    'rules' => ['required'],
-    'readonly' => false
-  ],
-  ...
-]
-```
-<br/>
 
 # Migrations naming
 In order to avoid migration names collision don't be afraid to be as much as possible descriptive in the name of the migration file.
@@ -134,7 +124,7 @@ We follow [Semantic Versioning](https://semver.org/) which means all releases mu
 > 3. **PATCH** version when you make backwards compatible bug fixes.
 > Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
-Pull requests for Modules (e.g. `fresh-inventory`) must update their respective versioning.
+Pull requests for Modules (e.g. `blog`) must update their respective versioning.
 
 - **HTTP API (Laravel)** version is updated using semantic versioning rules (updated in the `composer.json`)
 
