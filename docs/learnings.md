@@ -64,6 +64,8 @@ Controller method and view names should follow the same pattern as above.
 Git is not meant for that. If needed to store large files
 See how it is affecting the repository size which makes the initial pull/push to take too long
 ![image](https://user-images.githubusercontent.com/17571380/116427361-7bdfe000-a833-11eb-9fe6-c714c410a5d4.png)
+![image](https://user-images.githubusercontent.com/17571380/116949008-8bff2180-ac70-11eb-8874-cb1d4490d968.png)
+
 
 ![image](https://user-images.githubusercontent.com/17571380/116427894-f3157400-a833-11eb-84d4-ff13ec7fd1e4.png)
 7. Head over to laravel documentation about package development
@@ -124,3 +126,4 @@ config('services.stripe.secret')
     5. Use trailing slashes consistently
 - Config and environment variable replace static information or credentials. Credentials should never be part of the code.
 - Table and column names should use snake case (ie `envision_post_categories`). Table name should be in plural unlike the column name in singular.
+15. Do not store big file (or )

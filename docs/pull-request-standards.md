@@ -1,6 +1,18 @@
 # Standard Requirements
 When getting a Pull Request approved here are what Approvers are looking for at minimum.
 
+0. Before you start:
+  - branch of from your default branch (`develop` most likely): 
+  ```bash
+  git checkout develop;
+  git checkout -b issue/$issue
+  ```
+  - Start work
+  - Push daily
+1. PR title should match issue name
+2. PR description should contain "closes #issue-number"
+
+
 <br/>
 
 ## Closes What
@@ -10,7 +22,7 @@ When getting a Pull Request approved here are what Approvers are looking for at 
 closes #github-issue-number
 ```
 
-- Github Issue must must have a description and Acceptance Criteria and link to Breeze ticket.
+- Github Issue must must have a description and Acceptance Criteria.
 - Github there are times where we need to do a small patch or build change. In these moments, you can use the Pull Request to mark all the content above.
 
 If it relates to an issue but doesn't close it (rare),
@@ -35,7 +47,7 @@ It is important that you watch your Pull Request for any gate failures. This mea
 
 The approvers will ensure that there is appropriate code coverage. The team members should be practicing *Test Driven Development and Design*
 
-  - UI Tests should follow the structure and practices as outlined by [UI Testing Guidelines](https://github.com/FreshinUp/fresh-platform/wiki/UI-Testing)
+  - UI Tests should follow the structure and practices as outlined by [UI Testing Guidelines](./ui-standards.md)
     - At minimum the component should be testing its `Methods`, `Visuals`, `Computed`, and `Props`
   - (_Rare Case_) Any database changes that need to be separated into a single Pull Request (sometimes due to size of data changes) should use [Laravel's Database Assertions](https://laravel.com/docs/master/database-testing)
   - Time is a controlled variable via mocking Date time objects in PHP and Javascript
